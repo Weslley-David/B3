@@ -1,0 +1,10 @@
+{% if investments %}
+    <ul>
+    {% for investment in investments %}
+        <li>{{ investment.investment_identifyer }}</li>
+        <li>{{ investment.quantity }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No investments are available.</p>
+{% endif %}

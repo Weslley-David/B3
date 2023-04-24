@@ -1,0 +1,9 @@
+{% if codes %}
+    <ul>
+    {% for code in codes %}
+        <li>{{ code.code_identifyer }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No codes are available.</p>
+{% endif %}

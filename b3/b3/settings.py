@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "b3investmanager.apps.B3InvestmanagerConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
