@@ -3,8 +3,13 @@
     {% for investment in investments %}
         <li>{{ investment.investment_identifyer }}</li>
         <li>{{ investment.quantity }}</li>
+        <form method="POST" action="{% url 'delete-investment' investment.id %}">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
     {% endfor %}
     </ul>
+    <li><a href="{% url 'add_investment' %}">create invesment</a></li>
 {% else %}
     <p>No investments are available.</p>
 {% endif %}

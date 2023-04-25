@@ -9,17 +9,6 @@
 </head>
 
 <body>
-    {% if codes %}
-    <ul>
-        {% for code in codes %}
-        <li>{{ code.id }}</li>
-        <li>{{ code.code_identifyer }}</li>
-        <form method="POST" action="{% url 'delete-code' code.id %}">
-            {% csrf_token %}
-            <button type="submit">Delete</button>
-        </form>
-        {% endfor %}
-    </ul>
     <form method="post">
         <h1>Investment Creator</h1>
         {% csrf_token %}
@@ -27,9 +16,6 @@
         <input type="text" name="code_identifyer" id="code_identifyer">
         <button type="submit">Save</button>
     </form>
-    {% else %}
-    <p>No codes are available.</p>
-    {% endif %}
 </body>
 
 </html>

@@ -1,0 +1,41 @@
+<form method="post">
+    {% csrf_token %}
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date">
+    <br>
+    <label for="investment_identifyer">Investment identifier:</label>
+    <input type="text" name="investment_identifyer" id="investment_identifyer">
+    <br>
+    <label for="code_identifyer">Code:</label>
+    <select name="code_identifyer" id="code_identifyer">
+        {% for code in codes %}
+        <option value="{{ code.code_identifyer }}">{{ code.code_identifyer }} - {{ code.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" id="quantity">
+    <br>
+    <label for="value_unit">Unit value:</label>
+    <input type="number" name="value_unit" id="value_unit" step="0.001">
+    <br>
+    <label for="operation">Operation:</label>
+    <select name="operation" id="operation">
+        <option value="C">Compra</option>
+        <option value="V">Venda</option>
+    </select>
+    <br>
+    <label for="value_brokerage">Brokerage value:</label>
+    <input type="number" name="value_brokerage" id="value_brokerage" step="0.001">
+    <br>
+    <label for="value_operation">Operation value:</label>
+    <input type="number" name="value_operation" id="value_operation" step="0.001">
+    <br>
+    <label for="b3_rate">B3 rate:</label>
+    <input type="number" name="b3_rate" id="b3_rate" step="0.001">
+    <br>
+    <label for="value_total">Total value:</label>
+    <input type="number" name="value_total" id="value_total" step="0.001">
+    <br>
+    <button type="submit">Submit</button>
+</form>
