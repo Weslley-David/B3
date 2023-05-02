@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body style="background-color: #7aff6b;">
+    <section class="vh-100" style="background-color: #7aff6b;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-50 bg-dark">
+                <div class="text-success">
+                    Valor Total: {{ transaction_req.valor_total }} - Taxas Totais: {{ transaction_req.taxas_totais }} -
+                    Valor de Compra: {{ transaction_req.valor_de_compra }}
+                </div>
+                <table class="table table-dark">
+                    <tr>
+                        <th scope="col">Total</th>
+                        <th scope="col">quantidade</th>
+                        <th scope="col">stock</th>
+                        <th scope="col">operação</th>
+                        <th scope="col">data</th>
+                        <th scope="col">quantidade</th>
+                        <th scope="col">preço (un)</th>
+                    </tr>
+                    <tr>
+                        <td>{{ transaction_req.id }}</td>
+                        <td>{{ transaction_req.valor_total }}</td>
+                        <td>{{ transaction_req.stock }}</td>
+                        <td>{{ transaction_req.operacao }}</td>
+                        <td>{{ transaction_req.data }}</td>
+                        <td>{{ transaction_req.quantidade_de_acoes }}</td>
+                        <td>{{ transaction_req.preco_unitario }}</td>
+                    </tr>
+                </table>
+                <div class="d-flex justify-content-center">
+                    <form method="POST" action="{% url 'delete_transaction' transaction_req.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <p>
+                    <a href="{% url 'transactions'%}">
+                        << voltar</a>
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+</body>
+
+
+</html>
+DETALHE
+{{transaction_req.data}}
+{{transaction_req.stock}}
+{{transaction_req.quantidade_de_acoes}}
+{{transaction_req.preco_unitario}}
+{{transaction_req.operacao}}
+{{transaction_req.corretagem}}
+
+{{transaction_req.Investidor.perfil}}
+
+{{transaction_req.Investidor.user}}
+
+{{transaction_req.valor_total}}
