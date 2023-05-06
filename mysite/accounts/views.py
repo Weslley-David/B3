@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from my_wallet.models import Investidor
 
+
 def user_signup(request):
     return render(request, template_name='accounts/user_signup.html')
 
@@ -30,14 +31,15 @@ def user_register(request):
     }
 
     if errors == 0:
-        user = User.objects.create_user(username=username, password=password1, email=email)
+        user = User.objects.create_user(
+            username=username, password=password1, email=email)
         investidor = Investidor(user=user, perfil=investidor)
         investidor.save()
         print(investidor)
 
     else:
         return render(request, template_name='accounts/user_signup.html', context=context)
-    return redirect('index')
+    return redirect('user_signin')
 
 
 def user_login(request):
@@ -46,13 +48,10 @@ def user_login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        print('usuario logado com sucesso')
-        # redireciona para o valor de 'next' caso a url possua o parametro 'next',
-        # caso contrario redireciona para o a url de nome 'index'
         return redirect(request.GET.get('next', 'index'))
     else:
-        print('erro de usuario ou password')
         return redirect('user_signin')
+
 
 def user_signin(request):
     return render(request, template_name='accounts/user_signin.html')
@@ -60,4 +59,4 @@ def user_signin(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('index')
+    return render(request, template_name='accounts/user_signin.html')

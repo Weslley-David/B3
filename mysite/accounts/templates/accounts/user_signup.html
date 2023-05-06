@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -12,8 +13,8 @@
 
 <body>
 
-    <form action="{% url 'user_register' %}" method="post">
-        <section class="vh-100" style="background-color: #7aff6b;">
+    <form action="{% url 'user_register' %}" method="post" style="background-color: black;">
+        <section class="vh-100">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">

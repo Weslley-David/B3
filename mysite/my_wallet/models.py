@@ -26,7 +26,7 @@ class Stock(models.Model):
     cnpj = models.CharField(max_length=100)
 
     def __str__(self) -> str:
-        return "{}".format(self.codigo)
+        return "{} - {}".format(self.codigo, self.empresa_nome)
 
 
 class Transaction(models.Model):
@@ -34,7 +34,7 @@ class Transaction(models.Model):
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantidade_de_acoes = models.PositiveIntegerField()
     preco_unitario = models.DecimalField(
-        max_digits=10, decimal_places=5, validators=[MinValueValidator(0)])
+        max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
     OPERATIONS = (
         ('C', 'Compra'),
         ('V', 'Venda'),
@@ -48,15 +48,17 @@ class Transaction(models.Model):
         return "{} - {} - {} - {}".format(self.data, self.stock, self.Investidor.user.username, self.operacao)
 
     def valor_de_compra(self):
-        return self.quantidade_de_acoes * self.corretagem
+        return self.quantidade_de_acoes * self.preco_unitario
 
     def taxas_totais(self):
         return self.corretagem + Decimal('1.5')
 
     def valor_total(self):
-        v = self.quantidade_de_acoes * self.corretagem
+        v = self.quantidade_de_acoes * self.preco_unitario
         t = self.corretagem + Decimal('1.5')
 
         if (self.operacao == "C"):
-            return v + t
-        return f"{v - t}"
+            print
+            return (v + t)
+        else:
+            return (v - t)

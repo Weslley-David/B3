@@ -1,0 +1,9 @@
+.base_background {
+    background-image: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btn_pers{
+    background-color: violet;
+}
