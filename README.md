@@ -2,6 +2,8 @@
 Django project implementation for Special Topics Classes
 
 ## Instructions
+
+### Ubuntu and derivatives
 <ul>
 <li>Clone the project</li>
 <li>In the same directory, copy and paste the follow:</li>
