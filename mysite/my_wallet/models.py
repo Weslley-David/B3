@@ -31,7 +31,7 @@ class Stock(models.Model):
 
 class Transaction(models.Model):
     data = models.DateField("created")
-    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    stock = models.ForeignKey(Stock, on_delete=models.SET_NULL, null=True)
     quantidade_de_acoes = models.PositiveIntegerField()
     preco_unitario = models.DecimalField(
         max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
