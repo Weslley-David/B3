@@ -43,7 +43,8 @@
                         <th scope="col">operação</th>
                         <th scope="col">data</th>
                         <th scope="col">preço (un)</th>
-                        <th scope="col">#</th>
+                        <th scope="col">#edit</th>
+                        <th scope="col">#delete</th>
                     </tr>
                     {% for transaction in transactions %}
                     <tr>
@@ -55,7 +56,11 @@
                         <td>{{ transaction.data }}</td>
                         <td>{{ transaction.preco_unitario }}</td>
                         <td>
-                            <form method="POST" action="{% url 'delete_transaction' transaction.id %}">
+                            <button type="submit" class="btn btn-warning"><a
+                                    href="{% url 'edit' transaction.id%}"> Edit</a></button>
+                        </td>
+                        <td>
+                            <form method=" POST" action="{% url 'delete_transaction' transaction.id %}">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>

@@ -71,6 +71,35 @@ def detail(request, transaction: int):
 
 
 @login_required
+def edit(request, transaction: int):
+    if request.method == 'POST':
+        stock_id = request.POST['stock_id']
+        transaction_req = Transaction.objects.get(pk=transaction)
+        stock = Stock.objects.get(id=stock_id)
+
+        transaction_req.operacao = request.POST['operation']
+        transaction_req.stock = stock
+        transaction_req.data = request.POST['date']
+        transaction_req.corretagem = request.POST['brokerage']
+        transaction_req.quantidade_de_acoes = request.POST['quantity']
+        transaction_req.preco_unitario = request.POST['value_unit']
+        transaction_req.data = request.POST['date']
+
+        transaction_req.save()
+        return redirect('transactions')
+    else:
+        transaction_res = Transaction.objects.get(pk=transaction)
+        stocks = Stock.objects.all()
+        context = {
+            'transaction_res': transaction_res,
+            'stocks': stocks
+        }
+        print('\n\n\n\n\n',transaction_res)
+       
+        return render(request, 'my_wallet/edit_transaction.html', context=context)
+    
+
+@login_required
 def add_transaction(request):
     if request.method == 'POST':
 
